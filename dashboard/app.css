@@ -336,4 +336,26 @@ footer p { margin: 4px 0; max-width: 88ch; }
   .plan li::marker { color: #111; }
   .back { display: none; }
   footer { border-top-color: #999; color: #444; }
+  /* Completeness pass: every dark-theme surface and ink colour the rules
+     above do not reach, so nothing sits pale on white or dark on navy. */
+  .table-wrap, table, tbody, tbody tr, tbody td { background: #fff !important; }
+  tbody tr:nth-child(even) td { background: #f4f7f9 !important; }
+  .method-list, .method-list li { color: #26313c !important; }
+  td.rank, td.proto .pslug, td.cat, td.chains { color: #46545f !important; }
+  .detail-head h2 { color: #101c26 !important; }
+  .detail-head .slug, .detail-head .big-value .k, .facts dt, .model-table .why { color: #46545f !important; }
+  .facts dd, .model-table td, .plan li { color: #14202b !important; }
+  .detail-head .big-value .v { color: #0a6b32 !important; }
+  .down { color: #b3261e !important; }
+  /* With a protocol's detail open, the sheet leads with the detail itself:
+     the methodology and the stat cards stay on the board's sheet. */
+  body:has(#detail-view:not([hidden])) .method,
+  body:has(#detail-view:not([hidden])) .mast-stats { display: none; }
+  body:has(#detail-view:not([hidden])) .tagline,
+  body:has(#detail-view:not([hidden])) .meta-line { display: none; }
+  /* The farm plan may flow onto the first sheet: its steps are the detail
+     view's second half, and a card that cannot break would push every one
+     of them past the fold. Each step still stays whole. */
+  .plan { break-inside: auto; }
+  .plan li { break-inside: avoid; }
 }
