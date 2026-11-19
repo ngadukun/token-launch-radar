@@ -1,0 +1,339 @@
+/* Token Launch Radar — a dark scope theme: deep navy, one phosphor accent,
+   system type, tabular numbers. Hand-rolled; no framework, no webfonts. */
+
+:root {
+  --bg: #060b16;
+  --bg-raise: #0a1322;
+  --panel: #0c1728;
+  --panel-2: #0f1d33;
+  --line: #1c2f4a;
+  --line-soft: #14253c;
+  --ink: #d9e6f5;
+  --ink-dim: #8ba1bb;
+  --ink-faint: #5d748f;
+  --accent: #3dff8f;
+  --accent-dim: #1d7a4a;
+  --amber: #ffb340;
+  --down: #ff7070;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html { color-scheme: dark; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1100px 480px at 85% -10%, rgba(61, 255, 143, 0.07), transparent 60%),
+    radial-gradient(900px 600px at -10% 0%, rgba(38, 92, 168, 0.12), transparent 55%),
+    var(--bg);
+  color: var(--ink);
+  font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  padding: 28px clamp(14px, 4vw, 44px) 40px;
+  max-width: 1240px;
+  margin-inline: auto;
+}
+
+h1, h2, h3 { line-height: 1.15; margin: 0; }
+button, input, select { font: inherit; color: inherit; }
+.num, td.num, .money { font-variant-numeric: tabular-nums; }
+
+/* ---- masthead ---- */
+
+.masthead {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* A small radar scope drawn in pure CSS: rings, a sweep, one blip. */
+.scope {
+  position: relative;
+  flex: 0 0 auto;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-dim);
+  background:
+    radial-gradient(circle, transparent 31%, rgba(61, 255, 143, 0.16) 32%, transparent 33%),
+    radial-gradient(circle, transparent 65%, rgba(61, 255, 143, 0.14) 66%, transparent 67%),
+    conic-gradient(from 0deg, rgba(61, 255, 143, 0.35), transparent 22%),
+    var(--bg-raise);
+  box-shadow: inset 0 0 22px rgba(61, 255, 143, 0.10);
+}
+.scope i {
+  position: absolute;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 7px var(--accent);
+}
+.scope i:nth-child(1) { top: 22px; left: 55px; }
+.scope i:nth-child(2) { top: 52px; left: 30px; opacity: 0.65; }
+.scope i:nth-child(3) { top: 62px; left: 62px; opacity: 0.4; }
+.scope b {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 4px; height: 4px;
+  margin: -2px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.mast-text { flex: 1 1 auto; min-width: 260px; }
+.masthead h1 {
+  font-size: clamp(26px, 4.4vw, 40px);
+  letter-spacing: 0.14em;
+  font-weight: 800;
+  color: #f2f8ff;
+}
+.masthead h1::after {
+  content: "";
+  display: block;
+  width: 118px; height: 3px;
+  margin-top: 10px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.tagline { margin: 12px 0 6px; max-width: 62ch; color: var(--ink); }
+.meta-line { margin: 0; color: var(--ink-dim); font-size: 13.5px; }
+
+.mast-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(104px, 1fr));
+  gap: 10px;
+  margin: 2px 0 0;
+  flex: 0 0 auto;
+}
+.mast-stats .stat {
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: 9px 12px 7px;
+}
+.mast-stats dt { font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-faint); }
+.mast-stats dd {
+  margin: 1px 0 0;
+  font-size: 19px; font-weight: 700; color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- methodology ---- */
+
+.method {
+  margin-top: 20px;
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 16px 20px 12px;
+}
+.method h2 { font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase; color: #f2f8ff; }
+.method-list { margin: 10px 0 8px; padding-left: 20px; color: var(--ink); }
+.method-list li { margin: 3px 0; }
+.method-list b { color: var(--accent); font-weight: 600; }
+.method-note { margin: 6px 0 4px; color: var(--ink-dim); font-size: 13.5px; }
+.method-example {
+  margin: 8px 0 2px;
+  padding: 9px 13px;
+  background: rgba(61, 255, 143, 0.06);
+  border: 1px dashed var(--accent-dim);
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: 13.5px;
+  font-variant-numeric: tabular-nums;
+}
+.method-example b { color: var(--accent); }
+
+/* ---- controls ---- */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  margin: 22px 0 12px;
+}
+.ctl { display: grid; gap: 5px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-dim); }
+.ctl.grow { flex: 1 1 220px; }
+.ctl input[type="search"], .ctl select {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 11px;
+  font-size: 14.5px;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--ink);
+  outline: none;
+}
+.ctl input[type="search"]:focus, .ctl select:focus { border-color: var(--accent-dim); box-shadow: 0 0 0 3px rgba(61, 255, 143, 0.14); }
+.ctl.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 9px;
+  cursor: pointer;
+}
+.ctl.check input { width: 17px; height: 17px; accent-color: var(--accent-dim); }
+.count { margin: 0 0 9px auto; color: var(--ink-dim); font-size: 13.5px; }
+.count b { color: var(--accent); }
+
+/* ---- the board ---- */
+
+.table-wrap {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: auto;
+  background: var(--panel);
+}
+table { border-collapse: collapse; width: 100%; min-width: 780px; }
+thead th {
+  position: sticky; top: 0;
+  background: var(--panel-2);
+  text-align: left;
+  font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--ink-dim);
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+  user-select: none;
+}
+thead th[data-key] { cursor: pointer; }
+thead th[data-key]:hover { color: var(--accent); }
+thead th.sorted { color: var(--accent); }
+thead th .dir { font-size: 10px; }
+tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--line-soft);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: rgba(61, 255, 143, 0.045); }
+tbody tr:last-child td { border-bottom: none; }
+td.rank { color: var(--ink-faint); font-weight: 600; }
+td.proto .pname { font-weight: 650; color: #eef5ff; }
+td.proto .pslug { display: block; font-size: 12px; color: var(--ink-faint); }
+td.cat { color: var(--ink-dim); }
+td.chains { color: var(--ink-dim); }
+td.money { font-weight: 700; color: #eef5ff; }
+td.value { font-weight: 750; color: var(--accent); }
+.up { color: var(--accent); }
+.down { color: var(--down); }
+.flat { color: var(--ink-faint); }
+
+.chip {
+  display: inline-block;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
+  padding: 2.5px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-dim);
+  color: var(--accent);
+  background: rgba(61, 255, 143, 0.08);
+}
+.chip.find { border-color: var(--line); color: var(--ink-dim); background: transparent; }
+.empty { color: var(--ink-dim); padding: 18px 4px; }
+
+/* ---- detail ---- */
+
+.back {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  margin: 20px 0 14px;
+}
+.back:hover { border-color: var(--accent-dim); color: var(--accent); }
+
+.detail-head { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline; }
+.detail-head h2 { font-size: 30px; color: #f2f8ff; }
+.detail-head .slug { color: var(--ink-faint); font-size: 14px; }
+.detail-head .big-value { margin-left: auto; text-align: right; }
+.detail-head .big-value .v { font-size: 30px; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
+.detail-head .big-value .k { display: block; font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-faint); }
+
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+.card h3 { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim); margin-bottom: 10px; }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: 5px 16px; margin: 0; }
+.facts dt { color: var(--ink-faint); }
+.facts dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+.model-table { width: 100%; min-width: 0; }
+.model-table td { padding: 6px 8px; border-bottom: 1px solid var(--line-soft); white-space: normal; }
+.model-table tr:last-child td { border-bottom: none; }
+.model-table .amt { text-align: right; font-variant-numeric: tabular-nums; font-weight: 650; }
+.model-table .why { color: var(--ink-dim); font-size: 13px; }
+.model-table tr.total td { border-top: 2px solid var(--accent-dim); font-weight: 800; color: var(--accent); font-size: 16.5px; }
+
+.plan { margin-top: 16px; }
+.plan ol { margin: 6px 0 0; padding-left: 22px; }
+.plan li { margin: 10px 0; }
+.plan li::marker { color: var(--accent); font-weight: 700; }
+
+footer { margin-top: 30px; border-top: 1px solid var(--line); padding-top: 14px; color: var(--ink-faint); font-size: 13px; }
+footer p { margin: 4px 0; max-width: 88ch; }
+
+@media (max-width: 860px) {
+  .masthead { flex-wrap: wrap; }
+  .detail-grid { grid-template-columns: 1fr; }
+  .detail-head .big-value { margin-left: 0; text-align: left; }
+}
+
+/* The scope's sweep turns slowly; still for anyone who prefers it still. */
+@keyframes sweep { to { transform: rotate(360deg); } }
+.scope::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(61, 255, 143, 0.20), transparent 18%);
+  animation: sweep 9s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scope::after { animation: none; }
+}
+
+/* Print: a clean light sheet — header, filters and the top of the table (or
+   the detail panel) complete on the first page, nothing clipped mid-row. */
+@media print {
+  @page { margin: 12mm; }
+  body { background: #fff; color: #111; padding: 0; max-width: none; font-size: 11.5px; }
+  .masthead { border-bottom: 2px solid #111; }
+  .masthead h1 { color: #111; }
+  .masthead h1::after { background: #111; }
+  .tagline, .meta-line, .method-note, .count { color: #333; }
+  .scope { display: none; }
+  .mast-stats .stat { background: #fff; border-color: #999; }
+  .mast-stats dd { color: #111; }
+  .method { background: #fff; border-color: #999; border-left: 3px solid #111; }
+  .method h2 { color: #111; }
+  .method-list b, .method-example b { color: #111; }
+  .method-example { background: #f2f2f2; border-color: #999; color: #111; }
+  .controls { break-inside: avoid; }
+  .ctl input[type="search"], .ctl select { background: #fff; border-color: #999; color: #111; }
+  .table-wrap { border-color: #999; overflow: visible; }
+  table { min-width: 0; }
+  thead th { background: #eee; color: #111; position: static; }
+  tbody td { border-bottom-color: #ccc; }
+  tbody tr { break-inside: avoid; }
+  td.proto .pname, td.money { color: #111; }
+  td.value, .up { color: #0a6b32; }
+  .chip { border-color: #0a6b32; color: #0a6b32; background: #fff; }
+  .chip.find { border-color: #999; color: #555; }
+  .card { background: #fff; border-color: #999; break-inside: avoid; }
+  .model-table tr.total td { border-top-color: #111; color: #111; }
+  .plan li::marker { color: #111; }
+  .back { display: none; }
+  footer { border-top-color: #999; color: #444; }
+}

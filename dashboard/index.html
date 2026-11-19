@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="scope" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+  <div class="mast-text">
+    <h1>TOKEN LAUNCH RADAR</h1>
+    <p class="tagline">Protocols that record no token yet, ranked by what a launch would be worth if it priced like the
+      already-tokenised protocols beside them — and how to farm each one before it does.</p>
+    <p class="meta-line" id="meta-line">Loading the snapshot…</p>
+  </div>
+  <dl class="mast-stats" id="mast-stats"></dl>
+</header>
+
+<section class="method" aria-labelledby="method-h">
+  <h2 id="method-h">How the value is built</h2>
+  <ol class="method-list" id="method-list"></ol>
+  <p class="method-example" id="method-example"></p>
+  <p class="method-note" id="method-note"></p>
+</section>
+
+<main>
+  <section id="board-view" aria-label="The board">
+    <form class="controls" id="controls">
+      <label class="ctl grow">Search
+        <input type="search" id="q" placeholder="Protocol name or slug" autocomplete="off">
+      </label>
+      <label class="ctl">Category
+        <select id="f-category"><option value="">All categories</option></select>
+      </label>
+      <label class="ctl">Chain
+        <select id="f-chain"><option value="">All chains</option></select>
+      </label>
+      <label class="ctl">Min TVL
+        <select id="f-tvl">
+          <option value="0">Any size</option>
+          <option value="10000000">$10M+</option>
+          <option value="25000000">$25M+</option>
+          <option value="50000000">$50M+</option>
+          <option value="100000000">$100M+</option>
+          <option value="500000000">$500M+</option>
+        </select>
+      </label>
+      <label class="ctl check">
+        <input type="checkbox" id="f-watch"> Watchlist only
+      </label>
+      <p class="count" id="count" role="status"></p>
+    </form>
+
+    <div class="table-wrap">
+      <table id="board">
+        <thead>
+          <tr>
+            <th data-key="rank" class="num" aria-sort="ascending">#</th>
+            <th data-key="name">Protocol</th>
+            <th data-key="category">Category</th>
+            <th data-key="chain_count" class="num">Chains</th>
+            <th data-key="tvl_usd" class="num">TVL</th>
+            <th data-key="change_7d" class="num">7d</th>
+            <th data-key="implied_value_usd" class="num">Implied value</th>
+            <th>Signal</th>
+          </tr>
+        </thead>
+        <tbody id="board-body"></tbody>
+      </table>
+    </div>
+    <p class="empty" id="empty" hidden>No protocol on the board matches those filters. Loosen one and sweep again.</p>
+  </section>
+
+  <section id="detail-view" hidden aria-label="Protocol detail">
+    <button type="button" class="back" id="back">&larr; Back to the board</button>
+    <div id="detail"></div>
+  </section>
+</main>
+
+<footer>
+  <p id="foot-line"></p>
+  <p>An implied value is this radar's own claim, built from the snapshot's figures alone; it is not a prediction
+    that a token will be issued, or when. A protocol may still have a token its record does not carry — the radar
+    ranks what the record shows.</p>
+</footer>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+<noscript><p style="padding:12px 4px">This radar is drawn by script from the data file beside it; enable JavaScript to read the board.</p></noscript>
+</body>
+</html>
